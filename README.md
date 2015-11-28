@@ -13,7 +13,7 @@ follow the documentation [here.](https://jira.tecgraf.puc-rio.br/confluence/x/s5
 * This a very short documentation to remember the basic usage of [Docker.](https://www.docker.com/)
 * Our purpose here is solely to quick start a Openbus service for development and testing. Never use this setup in production.
 * Openbus is an Open Source software check the [license.](https://jira.tecgraf.puc-rio.br/confluence/x/u5TWAg)
-* If you don't want to build locally there are pre-built images at https://hub.docker.com/r/amtera/openbus
+* If you don't want to build locally there are pre-built images at [docker.io.](https://hub.docker.com/r/amtera/openbus)
 * You're free to modify this Docker recipe to meet your requirements
 
 # How it works?
