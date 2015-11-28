@@ -22,18 +22,18 @@ Look into the Dockfile to understand the chosen platform and which Openbus versi
 
 # Building the image
 
-    docker build -t openbus-core-linux26g4 .
+    docker build -t openbus .
     
 # Running the core services
 
 This will start the openbus service immediately. Use CTRL-c to terminate.
 
-     docker run --rm -it --name=openbus -h openbus openbus-core-linux26g4:latest
+     docker run --rm -it --name=openbus -h openbus openbus:latest
 
 # How to login into the machine
 
 You can override the default behavior of starting the services with the following command.
 
-    docker run --rm -it --name=openbus --entrypoint=/bin/bash openbus-core-linux26g4:latest
+    docker run --rm -it --name=openbus --entrypoint=/bin/bash openbus:latest
 
 After login in you also can start the services with the **startbus** script located at **/openbus**.
