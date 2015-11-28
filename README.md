@@ -36,10 +36,4 @@ You can override the default behavior of starting the services with the followin
 
     docker run --rm -it --name=openbus --entrypoint=/bin/bash openbus-core-linux26g4:latest
 
-After login in you also can start the services with the 
-```
-#!bash
-
-startbus
-```
- script located at /openbus.
+After login in you also can start the services with the **startbus** script located at **/openbus**.
