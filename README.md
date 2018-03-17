@@ -54,3 +54,7 @@ Both commands depends on **config** and **data** directories located at **/openb
 * OpenBus Core *2089*
 * OpenBus Collaboration Service *2090*
 * OpenBus Governance Extension Service *2091*
+
+# Contributors
+
+This docker file is maintained by both [OpenBus](http://www.tecgraf.puc-rio.br/openbus) and [Amtera](http://www.amtera.com.br) teams.
