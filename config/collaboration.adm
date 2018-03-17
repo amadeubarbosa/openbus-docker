@@ -1,0 +1,30 @@
+local CategoryName = "OpenBusServices"
+local EntityName = "CollaborationService"
+
+Category {
+  id = CategoryName,
+  name = "OpenBus additional services",
+}
+
+Entity {
+  id = EntityName,
+  category = CategoryName,
+  name = "Service that provides sessions to enable data-oriented collaboration between applications",
+}
+
+Certificate {
+  id = EntityName,
+  certificate = "data/collaboration.crt",
+}
+
+local Interfaces = {
+  "IDL:tecgraf/openbus/services/collaboration/v1_0/CollaborationRegistry:1.0",
+  "IDL:tecgraf/openbus/services/collaboration/v1_0/SessionRegistry:1.0"
+}
+
+for _, iface in ipairs(Interfaces)
+do
+  Interface({id=iface})
+end
+
+Grant({id=EntityName, interfaces = Interfaces})

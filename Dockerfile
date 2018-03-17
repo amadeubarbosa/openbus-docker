@@ -3,24 +3,37 @@ MAINTAINER Amtera Semantic Techologies <contact@amtera.com.br>
 
 ENV OPENBUS_HOME /openbus
 ENV PATH="$OPENBUS_HOME/bin:$PATH"
-ENV BUSDISTFILE openbus-core-2.0.0.8-Linux26g4_64.tar.gz
-ENV BUSDISTURL https://jira.tecgraf.puc-rio.br/confluence/download/attachments/47617769/$BUSDISTFILE
+ENV BUSDISTFILE openbus-core-2.1.0.2-Linux26g4_64.tar.gz
+ENV EXTDISTFILE openbus-busextension-1.0.1-Linux26g4_64.tar.gz
+ENV COLABDISTFILE openbus-collab-1.1.0.1-Linux26g4_64.tar.gz
+
+ENV BUSDISTURL https://jira.tecgraf.puc-rio.br/confluence/download/attachments/67600694/$BUSDISTFILE
+ENV EXTDISTURL https://jira.tecgraf.puc-rio.br/confluence/download/attachments/67600707/$EXTDISTFILE
+ENV COLABURL https://jira.tecgraf.puc-rio.br/confluence/download/attachments/52528884/$COLABDISTFILE
 
 RUN apt-get update && apt-get install -y wget
 RUN mkdir $OPENBUS_HOME
 WORKDIR $OPENBUS_HOME
 
 RUN wget -O $BUSDISTFILE $BUSDISTURL
+RUN wget -O $EXTDISTFILE $EXTDISTURL
+RUN wget -O $COLABDISTFILE $COLABURL
+
 RUN tar xf $BUSDISTFILE
-ADD *.lua *.crt *.key startbus ./
-RUN chmod +x startbus
+RUN tar xf $EXTDISTFILE
+RUN tar xf $COLABDISTFILE
 
-ENTRYPOINT busservices -privatekey openbus.key -admin admin -validator validator
+RUN mkdir data
 
+ADD data/* data/
+ADD config/* config/
 
+ADD *.lua ./
 
+RUN bin/businit start \
+ && bin/busadmin -busref localhost:2089 -entity admin -password admin -domain "" bin/busadmdesc.lua config/collaboration.adm \
+ && bin/busadmin -busref localhost:2089 -entity admin -password admin -domain "" bin/busadmdesc.lua config/governance.adm \
+ && NAME=collaboration bin/businit start \
+ && NAME=governance bin/businit start || tail -n 100 data/openbus.log data/collaboration.log data/governance.log
 
-
-# busadmin --login=admin --password=admin --script=sbepuser.lua
-
-
+ENTRYPOINT /openbus/bin/businit start && tail -f /openbus/data/openbus.log
