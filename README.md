@@ -47,13 +47,23 @@ After login in you can start the extra services overiding NAME variable of **bin
 		NAME=collaboration bin/businit start
 		NAME=governance bin/businit start
 
-Both commands depends on **config** and **data** directories located at **/openbus** on docker image.
+Both commands depends on **config**, **data** and **security** directories located at **/openbus** on docker image.
 
 # Network ports used in the services
 
 * OpenBus Core *2089*
 * OpenBus Collaboration Service *2090*
 * OpenBus Governance Extension Service *2091*
+
+# Volumes
+
+All log files, databases and other runtime files are stored at **/openbus/data** and it's declared using **VOLUME** in Dockerfile, see [VOLUME in Dockerfile reference](https://docs.docker.com/engine/reference/builder/#volume) and [docker storage volumes documentation](https://docs.docker.com/storage/volumes/).
+
+If you want to preserve data stored when you stop the container then you have to use [docker bind mounts](https://docs.docker.com/storage/bind-mounts/). For short, start the container with the **-v** option specifying the mapping between your host system and the container. Example mapping **/home/youruser/data** in your host system to **/openbus/data** inside the container:
+
+		docker run -rm -it -v /home/youruser/data:/openbus/data --name=openbus openbus
+
+**Attention:** in some systems that needs an external virtualization hypervisor you must check if the source directory you want to use in bind mount is also available in the [docker-machine](https://docs.docker.com/machine/overview) that executes the container. By default, home areas (/Users/yourname in MacOS, /home/yourname in Linux and C:\\Users\\yourname in Windows) are automatically available in the docker-machine as well.
 
 # Contributors
 

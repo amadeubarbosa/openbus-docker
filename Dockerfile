@@ -23,12 +23,14 @@ RUN tar xf $BUSDISTFILE
 RUN tar xf $EXTDISTFILE
 RUN tar xf $COLABDISTFILE
 
-RUN mkdir data
+RUN mkdir security
 
-ADD data/* data/
+ADD security/* security/
 ADD config/* config/
 
 ADD *.lua ./
+
+VOLUME /openbus/data
 
 RUN bin/businit start \
  && bin/busadmin -busref localhost:2089 -entity admin -password admin -domain "" bin/busadmdesc.lua config/collaboration.adm \

@@ -14,7 +14,7 @@ Entity {
 
 Certificate {
   id = EntityName,
-  certificate = "data/governance.crt",
+  certificate = "security/governance.crt",
 }
 
 local Interfaces = {
