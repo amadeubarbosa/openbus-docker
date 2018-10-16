@@ -1,5 +1,5 @@
-FROM ubuntu:14.04
-MAINTAINER Amtera Semantic Techologies <contact@amtera.com.br>
+FROM ubuntu:18.10
+MAINTAINER OpenBus Users <openbus-users@tecgraf.puc-rio.br>
 
 ENV OPENBUS_HOME /openbus
 ENV PATH="$OPENBUS_HOME/bin:$PATH"
