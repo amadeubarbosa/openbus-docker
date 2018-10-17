@@ -14,3 +14,10 @@
                 `---`     `----'             `----'                               
 ** Docker OpenBus Development Environment 2018 - PUC-Rio
 Compile: 'b2 warnings=off -sOPENSSL_INSTALL=$OPENSSL_PACKAGE_DIR -sOPENLDAP_INSTALL=$OPENLDAP_PACKAGE_DIR -sUUID_INSTALL=$LIBUUID_PACKAGE_DIR threading=multi'
+Use same compile directive for the following projects:
+  - openbus-core
+  - openbus-governance-extension
+
+In order to compile the 'openbus-collaboration-service' project you may use a couple of alternative variables since it's dependent of OpenBus 2.0 protocol.
+Compile: 'b2 warnings=off -sOPENSSL_INSTALL=$OPENSSL_PACKAGE_DIR -sOPENLDAP_INSTALL=$OPENLDAP_PACKAGE_DIR -sUUID_INSTALL=$LIBUUID_PACKAGE_DIR -sLUAOPENBUS=/openbus-dev/packages/luaopenbus-v20 -sOPENBUS_LEGACY_IDL=/openbus-dev/packages/openbus-legacy-idl-v15 -sOPENBUS_LIB_IDL=/openbus-dev/packages/openbus-lib-idl-v20 -sOPENBUS_IDL=/openbus-dev/packages/openbus-legacy-idl threading=multi'
+

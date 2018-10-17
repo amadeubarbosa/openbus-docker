@@ -54,7 +54,12 @@ for project in "lua openbus-3rd-party" \
     "uuid boost-build master uuid.jam" \
     "sqlite openbus-3rd-party" \
     "luaiconv openbus-3rd-party" \
-    "openbus-core openbus master"
+    "openbus-core openbus master" \
+    "openbus-governance-extension openbus" \
+    "openbus-sdk-lua openbus 02_00_01 luaopenbus-v20" \
+    "openbus-idl openbus OB_IDL_v1_05_2010_05_13 openbus-legacy-idl-v15" \
+    "openbus-sdk-idl-lib openbus 02_00 openbus-lib-idl-v20" \
+    "openbus-collaboration-service openbus bugfix/OPENBUS-3149_updateoil_luaiconv"
 do
   set -- $project
   git_clone $1 $2 $3 $4
